@@ -23,7 +23,8 @@ class Array:
         if self._size == len(self._data):
             raise ValueError('add failed. Array is full.')
         if not 0 <= index <= self._size:
-            raise ValueError('add failed. Require index >= 0 and index <= array sise.')
+            raise ValueError(
+                'add failed. Require index >= 0 and index <= array sise.')
         for i in range(self._size - 1, index - 1, -1):
             self._data[i + 1] = self._data[i]
         self._data[index] = e
@@ -94,4 +95,3 @@ if __name__ == '__main__':
 
     arr.remove_element('zhe')
     print(arr)
-
