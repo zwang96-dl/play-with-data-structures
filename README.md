@@ -12,3 +12,5 @@ Trie
 AVL
 红黑树
 哈希表
+
+平摊分析：Amortized Analysis
