@@ -22,7 +22,7 @@ class Array:
         """从后往前"""
         if self._size == len(self._data):
             raise ValueError('add failed. Array is full.')
-        if index < 0 or index > self._size:
+        if not 0 <= index <= self._size:
             raise ValueError('add failed. Require index >= 0 and index <= array sise.')
         for i in range(self._size - 1, index - 1, -1):
             self._data[i + 1] = self._data[i]
@@ -30,12 +30,12 @@ class Array:
         self._size += 1
 
     def get(self, index):
-        if not 0 <= index < self.size:
+        if not 0 <= index < self._size:
             raise ValueError('get failed. Index is illegal.')
         return self._data[index]
 
     def set(self, index, e):
-        if not 0 <= index < self.size:
+        if not 0 <= index < self._size:
             raise ValueError('set failed. Index is illegal.')
         self._data[index] = e
 
@@ -68,12 +68,11 @@ class Array:
 
     def remove_element(self, e):
         index = self.find_index(e)
-        print('index', index)
         if index != -1:
             self.remove(index)
 
     def __str__(self):
-        return str('<Array>: {}'.format(self._data[:self._size]))
+        return str('<chapter_02_Array.array.Array>: {}'.format(self._data[:self._size]))
 
     def __repr__(self):
         return self.__str__()
@@ -82,12 +81,17 @@ class Array:
 if __name__ == '__main__':
     arr = Array()
 
-    for i in range(9):
+    for i in range(8):
         arr.add_last(i)
+
+    arr.add_last('zhe')
 
     arr.add_first(-1)
     print(arr)
 
     arr.remove_element(8)
+    print(arr)
+
+    arr.remove_element('zhe')
     print(arr)
 
