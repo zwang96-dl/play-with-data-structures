@@ -19,12 +19,16 @@ class Array:
         self.add(0, e)
 
     def add(self, index, e):
+        print('index', index, self._size, len(self._data))
         """从后往前"""
         if not 0 <= index <= self._size:
             raise ValueError(
                 'add failed. Require index >= 0 and index <= array sise.')
         if self._size == len(self._data):
-            self._resize(2 * len(self._data))
+            if self._size == 0:
+                self._resize(1)
+            else:
+                self._resize(2 * len(self._data))
         for i in range(self._size - 1, index - 1, -1):
             self._data[i + 1] = self._data[i]
         self._data[index] = e
@@ -34,6 +38,12 @@ class Array:
         if not 0 <= index < self._size:
             raise ValueError('get failed. Index is illegal.')
         return self._data[index]
+
+    def get_last(self):
+        return self.get(self._size - 1)
+
+    def get_first(self):
+        return self.get(0)
 
     def set(self, index, e):
         if not 0 <= index < self._size:
@@ -82,7 +92,7 @@ class Array:
         self._data = new_data
 
     def __str__(self):
-        return str('<chapter_02_Array.array.Array>: {}, capacity: {}'.format(self._data[:self._size], self.get_capacity()))
+        return str('<chapter_02_Array.array.Array> : {}, capacity: {}'.format(self._data[:self._size], self.get_capacity()))
 
     def __repr__(self):
         return self.__str__()
