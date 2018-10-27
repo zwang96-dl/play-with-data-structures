@@ -59,7 +59,8 @@ class Array:
         for i in range(index + 1, self._size):
             self._data[i - 1] = self._data[i]
         self._size -= 1
-        if (self._size == len(self._data) // 2):
+        # len(self._data)如果为1，len(self._data) // 2就会为0，不合理。
+        if (self._size == len(self._data) // 4 and len(self._data) // 2 != 0):
             self._resize(len(self._data) // 2)
         return ret
 
