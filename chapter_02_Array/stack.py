@@ -1,5 +1,5 @@
-from array import Array
-from base import StackBase
+from chapter_02_Array.base import StackBase
+from chapter_02_Array.array import Array
 
 
 class ArrayStack(StackBase):

@@ -1,5 +1,5 @@
-from base import QueueBase
-from array import Array
+from chapter_02_Array.base import QueueBase
+from chapter_02_Array.array import Array
 
 
 class ArrayQueue(QueueBase):
