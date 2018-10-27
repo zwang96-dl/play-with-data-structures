@@ -49,7 +49,7 @@ if __name__ == '__main__':
                 if stack.get_size() == 0 or hash_[ch] != stack.pop():
                     return False
         return stack.is_empty()
-    
+
     input_str1 = '[{(())}]'
     print(is_valid(input_str1))
 

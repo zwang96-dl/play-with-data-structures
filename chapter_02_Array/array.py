@@ -19,7 +19,6 @@ class Array:
         self.add(0, e)
 
     def add(self, index, e):
-        print('index', index, self._size, len(self._data))
         """从后往前"""
         if not 0 <= index <= self._size:
             raise ValueError(
