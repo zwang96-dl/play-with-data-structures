@@ -1,5 +1,5 @@
-from chapter_02_Array.base import StackBase
 from chapter_02_Array.array import Array
+from chapter_03_Stack_Queue.base import StackBase
 
 
 class ArrayStack(StackBase):
@@ -26,7 +26,7 @@ class ArrayStack(StackBase):
         return self._array.get_capacity()
 
     def __str__(self):
-        return str('<chapter_02_Array.stack.ArrayStack> : {}'.format(self._array))
+        return str('<chapter_03_Stack_Queue.stack.ArrayStack> : {}'.format(self._array))
 
     def __repr__(self):
         return self.__str__()

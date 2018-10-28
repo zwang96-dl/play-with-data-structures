@@ -1,4 +1,4 @@
-from chapter_02_Array.base import QueueBase
+from chapter_03_Stack_Queue.base import QueueBase
 from chapter_03_LinkedList.linkedlist import LinkedList
 
 

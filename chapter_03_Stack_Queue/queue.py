@@ -1,5 +1,5 @@
-from chapter_02_Array.base import QueueBase
 from chapter_02_Array.array import Array
+from chapter_03_Stack_Queue.base import QueueBase
 
 
 class ArrayQueue(QueueBase):
@@ -25,7 +25,7 @@ class ArrayQueue(QueueBase):
         return self._array.get_first()
 
     def __str__(self):
-        return str('<chapter_02_Array.queue.ArrayQueue> : {}'.format(self._array))
+        return str('<chapter_03_Stack_Queue.queue.ArrayQueue> : {}'.format(self._array))
 
     def __repr__(self):
         return self.__str__()
@@ -83,10 +83,10 @@ class LoopQueue(QueueBase):
 
     def __str__(self):
         if self._tail >= self._front:
-            return str('<chapter_02_Array.queue.LoopQueue> : front {} tail, capacity: {}'.format(self._data[self._front:self._tail], self.get_capacity()))
+            return str('<chapter_03_Stack_Queue.queue.LoopQueue> : front {} tail, capacity: {}'.format(self._data[self._front:self._tail], self.get_capacity()))
         else:
             # presentation purpose only
-            return str('<chapter_02_Array.queue.LoopQueue> : front {} tail, capacity: {}'.format(str(self._data[self._front:] + self._data[:self._tail]), self.get_capacity()))
+            return str('<chapter_03_Stack_Queue.queue.LoopQueue> : front {} tail, capacity: {}'.format(str(self._data[self._front:] + self._data[:self._tail]), self.get_capacity()))
 
     def __repr__(self):
         return self.__str__()
