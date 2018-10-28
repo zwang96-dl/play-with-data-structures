@@ -59,7 +59,8 @@ class LinkedListQueue(QueueBase):
         while curr:
             data.append(str(curr.e))
             curr = curr.next
-        return '<chapter_03_LinkedList.linkedlist_queue.LinkedListQueue>: (Tail) ' + ' <-> '.join(data) + ' (Head)'
+        return '<chapter_03_LinkedList.linkedlist_queue.LinkedListQueue>: (Tail) ' + \
+            ' <-> '.join(data) + ' (Head)'
         
 
     def __repr__(self):
