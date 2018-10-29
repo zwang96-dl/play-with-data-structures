@@ -1,10 +1,13 @@
+from collections import deque
+
+
 class BST:
     """这里的BST实现不包括重复元素（为了演示原理方便）"""
     class _Node:
         def __init__(self, e):
             self.e = e
             self.left = None
-            self.right=  None
+            self.right= None
 
     def __init__(self):
         self._root = None
@@ -76,7 +79,7 @@ class BST:
         self._pre_order(node.right)
 
     def pre_order_NR(self):
-        """非常好的BFS例子"""
+        """非常好的DFS例子"""
         stack = []
         stack.append(self._root)
         while stack:
@@ -108,6 +111,109 @@ class BST:
         self._post_order(node.right)
         print(node.e)
 
+    def level_order(self):
+        """非常好的BFS例子"""
+        queue = deque()
+        queue.append(self._root)
+        while queue:
+            curr = queue.popleft()
+            print(curr.e)
+            if curr.left:
+                queue.append(curr.left)
+            if curr.right:
+                queue.append(curr.right)
+
+    def minimum(self):
+        if self.is_empty():
+            raise ValueError('BST is empty!')
+        self._minimum(self._root)
+
+    def _minimum(self, node):
+        if not node.left:
+            return node
+        return self._minimum(node.left)
+
+    def maximum(self):
+        if self.is_empty():
+            raise ValueError('BST is empty!')
+        self._maximum(self._root)
+
+    def _maximum(self, node):
+        if not node.right:
+            return node
+        return self._maximum(node.right)
+
+    def remove_min(self):
+        ret = self.minimum()
+        # 用单链表来验证
+        self._root = self._remove_min(self._root)
+        return ret
+
+    # 删除掉以node为根的BST中的最小节点
+    # 返回删除节点后新的BST的根
+    def _remove_min(self, node):
+        # 递归终止
+        if not node.left:
+            right_node = node.right
+            node.right = None
+            self._size -= 1
+            return right_node
+        node.left = self._remove_min(node.left)
+        return node
+
+    def remove_max(self):
+        ret = self.maximum()
+        # 用单链表来验证
+        self._root = self._remove_max(self._root)
+        return ret
+
+    # 删除掉以node为根的BST中的最大节点
+    # 返回删除节点后新的BST的根
+    def _remove_max(self, node):
+        # 递归终止
+        if not node.right:
+            left_node = node.left
+            node.left = None
+            self._size -= 1
+            return left_node
+        node.right = self._remove_max(node.right)
+        return node
+
+    def remove(self, e):
+        self._root = self._remove(self._root, e)
+
+    # 删除以node为根的BST中值为e的节点，递归算法
+    # 返回删除节点后的新的BST的根
+    def _remove(self, node, e):
+        # 递归终止
+        if not node:
+            return
+        # 递归条件
+        if node.e > e:
+            node.left = self._remove(node.left, e)
+            return node
+        elif node.e < e:
+            node.right = self._remove(node.right, e)
+        else: # node.e == e
+            if not node.left:
+                right_node = node.right
+                node.right = None
+                self._size -= 1
+                return right_node
+            if not node.right:
+                left_node = node.left
+                node.left = None
+                self._size -= 1
+                return left_node
+            # 如果左右子树均不为空
+            # 找到比待删除节点大的最小节点，即待删除节点右子树的最小节点
+            # 用这个节点顶替待删除节点的位置
+            successor = self.minimum(node.right)
+            successor.right = self._remove_min(node.right)
+            successor.left = node.left
+            node.left = node.right = None
+            return successor
+
     def _generate_depth_string(self, depth):
         res = ''
         for i in range(depth):
@@ -133,12 +239,25 @@ class BST:
 
 if __name__ == '__main__':
     bst = BST()
-    nums = [5, 3, 6, 8, 4, 2]
-    for num in nums:
-        bst.add(num)
-    # bst.pre_order()
-    print(bst)
+    # nums = [5, 3, 6, 8, 4, 2]
+    # for num in nums:
+    #     bst.add(num)
+    # # bst.pre_order()
+    # # print(bst)
 
-    # bst.in_order()
-    # bst.post_order()
-    # bst.pre_order_NR()
+    # # bst.in_order()
+    # # bst.post_order()
+    # # bst.pre_order_NR()
+    # bst.level_order()
+
+    from random import randint
+    for i in range(20):
+        bst.add(randint(0, 10000))
+
+    bst.in_order()
+    print('###############')
+    bst.remove_min()
+    bst.remove_max()
+    bst.in_order()
+
+
