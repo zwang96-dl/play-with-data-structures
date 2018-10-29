@@ -1,5 +1,9 @@
 class Array:
-    def __init__(self, capacity=10):
+    def __init__(self, arr=None, capacity=10):
+        if isinstance(arr, list):
+            self._data = arr[:]
+            self._size = len(arr)
+            return
         self._data = [None] * capacity
         self._size = 0
 
@@ -89,6 +93,11 @@ class Array:
         for i in range(self._size):
             new_data[i] = self._data[i]
         self._data = new_data
+
+    def swap(self, i, j):
+        if i < 0 or i >= self._size or j < 0 or j >= self._size:
+            raise ValueError('Index is illegal.')
+        self._data[i], self._data[j] = self._data[j], self._data[i]
 
     def __str__(self):
         return str('<chapter_02_Array.array.Array> : {}, capacity: {}'.format(self._data[:self._size], self.get_capacity()))
