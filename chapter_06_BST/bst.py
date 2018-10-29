@@ -45,7 +45,7 @@ class BST:
             self._size += 1
             return self._Node(e)
         if node.e == e:
-            return
+            return node
         elif node.e > e:
             node.left = self._add(node.left, e)
         else:
@@ -74,7 +74,6 @@ class BST:
         """前序遍历以node为根的BST"""
         if not node:
             return
-        print(node.e)
         self._pre_order(node.left)
         self._pre_order(node.right)
 
@@ -84,7 +83,6 @@ class BST:
         stack.append(self._root)
         while stack:
             curr = stack.pop()
-            print(curr.e)
             if curr.right:
                 stack.append(curr.right)
             if curr.left:
@@ -97,7 +95,6 @@ class BST:
         if not node:
             return
         self._in_order(node.left)
-        print(node.e)
         self._in_order(node.right)
 
     def post_order(self):
@@ -109,7 +106,6 @@ class BST:
             return
         self._post_order(node.left)
         self._post_order(node.right)
-        print(node.e)
 
     def level_order(self):
         """非常好的BFS例子"""
@@ -117,7 +113,6 @@ class BST:
         queue.append(self._root)
         while queue:
             curr = queue.popleft()
-            print(curr.e)
             if curr.left:
                 queue.append(curr.left)
             if curr.right:
@@ -239,25 +234,25 @@ class BST:
 
 if __name__ == '__main__':
     bst = BST()
-    # nums = [5, 3, 6, 8, 4, 2]
+    # nums = [5, 3, 6, 8, 4, 2, 2]
     # for num in nums:
     #     bst.add(num)
-    # # bst.pre_order()
-    # # print(bst)
+    # bst.pre_order()
+    # print(bst)
 
-    # # bst.in_order()
-    # # bst.post_order()
-    # # bst.pre_order_NR()
+    # bst.in_order()
+    # bst.post_order()
+    # bst.pre_order_NR()
     # bst.level_order()
 
     from random import randint
     for i in range(20):
-        bst.add(randint(0, 10000))
-
+        bst.add(randint(0, 10))
+    print(bst)
     bst.in_order()
-    print('###############')
     bst.remove_min()
     bst.remove_max()
     bst.in_order()
+    print(bst.size())
 
 
