@@ -125,7 +125,7 @@ class BST:
     def __str__(self):
         res = []
         self._generate_BST_string(self._root, 0, res)
-        return ''.join(res)
+        return '<chapter_06_BST.bst.BST>:\n' + ''.join(res)
 
     def __repr__(self):
         return self.__str__()
@@ -137,8 +137,8 @@ if __name__ == '__main__':
     for num in nums:
         bst.add(num)
     # bst.pre_order()
-    # print(bst)
+    print(bst)
 
     # bst.in_order()
     # bst.post_order()
-    bst.pre_order_NR()
+    # bst.pre_order_NR()
