@@ -1,25 +1,27 @@
-from chapter_06_BST.bst import BST
+from chapter_04_LinkedList.linkedlist import LinkedList
 from chapter_07_Set.base import SetBase
 
 
-class BSTSet(SetBase):
+class LinkedListSet(SetBase):
     def __init__(self):
-        self._bst = BST()
+        self._list = LinkedList()
 
     def get_size(self):
-        return self._bst.size()
+        return self._list.get_size()
 
     def is_empty(self):
-        return self._bst.is_empty()
-
-    def add(self, e):
-        return self._bst.add(e)
+        return self._list.is_empty()
 
     def contains(self, e):
-        return self._bst.contains(e)
+        return self._list.contains(e)
+
+    def add(self, e):
+        if self.contains(e):
+            return
+        self._list.add_first(e)
 
     def remove(self, e):
-        return self._bst.remove(e)
+        self._list.remove(e)
 
 
 if __name__ == '__main__':
@@ -30,12 +32,14 @@ if __name__ == '__main__':
 
     from time import time
     start_time = time()
-    bst_set = BSTSet()
+    bst_set = LinkedListSet()
     for word in words:
         bst_set.add(word)
-
+    
     print('Total words: ', len(words))
     print('Unique words: ', bst_set.get_size())
     print('Contains word "they": ', bst_set.contains('they'))
-    ## 耗时0.58秒左右
+    ## 耗时100秒左右
     print('Total time: {} seconds'.format(time() - start_time))
+
+
