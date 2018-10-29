@@ -1,5 +1,5 @@
 from chapter_06_BST.bst import BST
-from chapter_07_Set.base import SetBase
+from chapter_07_Set_Map.base import SetBase
 
 
 class BSTSet(SetBase):
@@ -24,7 +24,7 @@ class BSTSet(SetBase):
 
 if __name__ == '__main__':
     words = ''
-    with open('./chapter_07_Set/shakespeare.txt', 'r') as f:
+    with open('./chapter_07_Set_Map/shakespeare.txt', 'r') as f:
         words = f.read()
     words = words.split()
 

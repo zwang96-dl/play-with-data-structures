@@ -1,5 +1,5 @@
 from chapter_04_LinkedList.linkedlist import LinkedList
-from chapter_07_Set.base import SetBase
+from chapter_07_Set_Map.base import SetBase
 
 
 class LinkedListSet(SetBase):
@@ -26,7 +26,7 @@ class LinkedListSet(SetBase):
 
 if __name__ == '__main__':
     words = ''
-    with open('./chapter_07_Set/shakespeare.txt', 'r') as f:
+    with open('./chapter_07_Set_Map/shakespeare.txt', 'r') as f:
         words = f.read()
     words = words.split()
 
