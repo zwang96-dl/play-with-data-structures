@@ -28,7 +28,9 @@ class SegmentTree:
         if l == r:
             self._tree[tree_index] = self._data[l]
             return
+        # 左子树的根节点
         left_tree_index = self._left_child(tree_index)
+        # 右子树的根节点
         right_tree_index = self._right_child(tree_index)
         mid = l + (r - l) // 2
         self._build_segment_tree(left_tree_index, l, mid)
@@ -37,6 +39,28 @@ class SegmentTree:
             self._tree[left_tree_index],
             self._tree[right_tree_index],
         )
+
+    def query(self, query_l, query_r):
+        if query_l < 0 or query_l >= len(self._data) or \
+            query_r < 0 or query_r >= len(self._data) or \
+            query_l > query_r:
+            raise ValueError('Index is illegal.')
+        return self._query(0, 0, len(self._data) - 1, query_l, query_r)
+
+    # 在以tree_index为根的线段树中的(线段树本身)[l...r]的范围里，搜索区间(用户指定的)[query_l...query_r]的值
+    def _query(self, tree_index, l, r, query_l, query_r):
+        if l == query_l and r == query_r:
+            return self._tree[tree_index]
+        mid = l + (r - l) // 2
+        left_tree_index = self._left_child(tree_index)
+        right_tree_index = self._right_child(tree_index)
+        if query_l >= mid + 1:
+            return self._query(right_tree_index, mid + 1, r, query_l, query_r)
+        elif query_r <= mid:
+            return self._query(left_tree_index, l, mid, query_l, query_r)
+        left_result = self._query(left_tree_index, l, mid, query_l, mid)
+        right_result = self._query(right_tree_index, mid + 1, r, mid + 1, query_r)
+        return self._merger(left_result, right_result)
 
     def __str__(self):
         res = []
@@ -57,3 +81,4 @@ if __name__ == '__main__':
     sum_merger = lambda a, b: a + b
     seg_tree = SegmentTree(arr=nums, merger=sum_merger)
     print(seg_tree)
+    print(seg_tree.query(0, 3))
