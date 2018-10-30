@@ -13,7 +13,7 @@ class SegmentTree:
 
     def get(self, index):
         if index < 0 or index >= len(self._data):
-            raise ValueError('Index is ieelgal.')
+            raise ValueError('Index is illegal.')
         return self._data[index]
 
     def _left_child(self, index):
@@ -64,7 +64,7 @@ class SegmentTree:
 
     def setter(self, index, e):
         if index < 0 or index >= len(self._data):
-            raise ValueError('Index is illegal')
+            raise ValueError('Index is illegal.')
         self._data[index] = e
         self._setter(0, 0, len(self._data) - 1, index, e)
 
