@@ -51,3 +51,12 @@ remove_last时resize太过着急，出现复杂度震荡，使用lazy方案：
 
 Trie:
 - 重点应用是查询前缀
+
+UnionFind
+- 连接问题
+- union(e1, e2), query(e1, e2)
+- use array for implementation
+- 可以基于size优化
+- 可以基于rank优化
+- 路径压缩(发生在find操作中顺便进行)
+- 查询合并都是O(h)
