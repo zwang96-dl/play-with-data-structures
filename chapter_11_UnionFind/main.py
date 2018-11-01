@@ -22,7 +22,7 @@ def test_uf(uf, m):
         b = randint(0, size - 1)
         uf.is_connected(a, b)
     end_time = time()
-    print("Time cost: {}".format(end_time - start_time))
+    print('Time cost: {}'.format(end_time - start_time))
 
 
 if __name__ == '__main__':

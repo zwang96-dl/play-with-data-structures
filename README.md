@@ -1,30 +1,31 @@
-数组
-栈
-队列
-链表
-二分搜索树
-堆
+## play-with-data-structures
 
-线段树
+Python implementation of imooc course [玩转数据结构](https://coding.imooc.com/class/207.html), thanks for that great course (instructor [liuyubobobo](https://github.com/liuyubobobo)) !
+
+Any pull-request is welcome:)
+
+Any quesitons please email to wangzhe.dut@gmail.com
+
+
+### Included data structures
+
+Array 数组
+Stack 栈
+Queue 队列
+Linked List 链表
+Binary Search Tree 二分搜索树
+Heap 堆
+
+Segment Tree 线段树
 Trie
-并查集
+Union Find 并查集
 
 AVL
-红黑树
-哈希表
+Red Black Tree 红黑树
+Hash Table 哈希表
 
-平摊分析：Amortized Analysis, resize时候会引入。
-remove_last时resize太过着急，出现复杂度震荡，使用lazy方案：
-扩容2倍，缩容1/4（错开）
 
-删除任意节点：
-1. 叶子节点
-2. 只有左孩子或者只有右孩子
-3. 既有做孩子又有右孩子（* Hibbard Deletion *）:找被删节点右子树中方的最左节点（最小值）来代替
-
-完全二叉树：不一定是满二叉树，但是缺失的节点一定是在树的右下侧
-
-满二叉树：除了叶子节点，所有节点既有左孩子又有右孩子
+### Some course notes
 
 二叉堆：
 - 堆中任意节点的值一定小于等于其父节点的值（最大堆）
@@ -86,7 +87,7 @@ new node
 ```
 
 红黑树
-- 红黑树也是平衡二分搜索树
+- 红黑树也是平衡二分搜索树，统计性能更好
 - 1. 每个节点要么是红色，要么是黑色
 - 2. 根节点是黑色的
 - 3. 每一个叶子节点（最后的空节点）是黑色的(空节点既是根节点，又是叶子节点，是黑色的)
@@ -101,3 +102,39 @@ new node
 - 如果经常添加，删除，红黑树性能高于AVL
 - 所有的红节点都是向左倾斜的
 - 红黑树中添加新元素：左旋转 -> 右旋转 -> 颜色翻转
+- 红黑树删除节点（太复杂）
+
+哈希表
+- 设计哈希函数，key通过哈希函数得到的index分布越均匀越好
+- 哈希冲突处理
+- 大整数：取模（可能造成分布不均匀，直接丢弃了部分数字的信息）-> 模一个素数
+- 空间换时间
+- 一致性，高效性，均匀性
+- hash冲突可以使用链地址法解决 (seperate chaining)
+- hash(-121211) & 0x7fffffff % M  0x7fffffff (f == 1111, 7 == 111，一共是31个1 == 2147483647，相当于抹去了最高位符号位的1)
+- 哈希表开了M个空间，对于冲突的元素以链表（或者TreeMap, TreeSet）形式插入
+- 平均每个地址承载的元素多过一定程度，即扩容 N/M >= upper_tol
+- 平均每个地址承载的元素少过一定程序，即缩容 N/M < lower_tol
+- 开放地址法，不必马上插入相同hash的链表中，放入下一个空白的位置即可(线性探测，平方探测，二次哈希),这样可以使得数组整体被使用率比较高（负载率高，均匀度高）
+- 再哈希法（rehashing）
+- coalesced hashing（综合了sperate chaining和open addressing）
+
+
+### Miscellaneous
+
+平摊分析：Amortized Analysis, resize时候会引入。
+remove_last时resize太过着急，出现复杂度震荡，使用lazy方案：
+扩容2倍，缩容1/4（错开）
+
+删除任意节点：
+1. 叶子节点
+2. 只有左孩子或者只有右孩子
+3. 既有做孩子又有右孩子（* Hibbard Deletion *）:找被删节点右子树中方的最左节点（最小值）来代替
+
+完全二叉树：不一定是满二叉树，但是缺失的节点一定是在树的右下侧
+
+满二叉树：除了叶子节点，所有节点既有左孩子又有右孩子
+
+图结构：邻接表和邻接矩阵（建图比较简单，但是可以应用图的存储结构的一些性质做一些很好的应用）
+
+抽象数据结构：类似于接口的思想
