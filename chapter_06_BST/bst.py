@@ -208,7 +208,7 @@ class BST:
             # 如果左右子树均不为空
             # 找到比待删除节点大的最小节点，即待删除节点右子树的最小节点
             # 用这个节点顶替待删除节点的位置
-            successor = self.minimum(node.right)
+            successor = self._minimum(node.right)
             successor.right = self._remove_min(node.right)
             successor.left = node.left
             node.left = node.right = None
