@@ -51,7 +51,7 @@ class LinkedList:
     def get_last(self):
         return self.getter(self._size - 1)
 
-    def setter(self, index):
+    def setter(self, index,e):
         if index < 0 or index >= self._size:
             raise ValueError('Set failed. Illegal index.')
         curr = self._dummy_head.next
